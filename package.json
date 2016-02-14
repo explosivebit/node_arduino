@@ -4,7 +4,7 @@
   "description": "Real time web chat",
   "dependencies": {
     "express": "latest",
-    "socket.io": "latest"
+    "socket.io": "latest
   },
   "author": "developer"
 }
