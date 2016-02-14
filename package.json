@@ -1,12 +1,12 @@
 {
-  "name": "RealTimeWebChat",
+  "name": "node_arduino",
   "version": "0.0.1",
-  "description": "Real time web chat",
+  "description": "Arduino + node js + express + serialport",
   "dependencies": {
     "express": "latest",
     "socket.io": "latest",
     "serialport": "latest"
   },
-  "author": "developer"
+  "author": "explosivebit"
 }
  
