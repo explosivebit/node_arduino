@@ -24,14 +24,13 @@ mySerial.on("open", function () {
   //console.log("Porta Aberta.");
 });
 
+mySerial.on('button', function(data){
+    console.log(data);
+    //serialPort.write(data);
+})
+
 mySerial.on("data", function(data){
-	io.emit("arduinoData", {
-		param1: data,
-		param2: data,
-		param3: data,
-		param4: data,
-		param5: data
-	});
+	io.emit("arduinoData", data);
 });
 
 

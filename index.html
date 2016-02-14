@@ -13,18 +13,10 @@
 	socket.on('arduinoData', function(data){
 		// $('#date').text(data.arduinoData);
 		console.log(data);
-		var obj = JSON.parse(data.param1);
-		$('#date').append('<p><b>' + obj + '</b></p>');
+		var a = JSON.parse(data);
+		$('#date').append('<p>' + a.name + ', ' + a.lname + ', ' + a.age + '</p>');
 		//$('#date').text(data.param1);
 	});
-
-/*
-	$("#text").click(function(){
-		$('#text').keypress(function(e){
-			socket.emit('client_data', {'letter': "yoo9"});
-		});
-	});
-*/
 
   </script>
   <div id="date"></div>
