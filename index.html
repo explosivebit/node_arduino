@@ -14,12 +14,14 @@
 		// $('#date').text(data.arduinoData);
 		console.log(data);
 		var a = JSON.parse(data);
-		$('#date').append('<p>' + a.name + ', ' + a.lname + ', ' + a.age + '</p>');
+		//$('#date').append('<p>' + a.name + ', ' + a.lname + ', ' + a.age + '</p>');
+		$('#date').css('width', a.age);
 		//$('#date').text(data.param1);
 	});
 
   </script>
-  <div id="date"></div>
+  <div id="date" style="width: 800px; height: 200px; background: gray">
+  </div>
  <!-- <textarea id="text"></textarea>-->
   </body>
 </html>
