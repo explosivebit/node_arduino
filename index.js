@@ -1,33 +1,52 @@
-<!doctype html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Socket.IO Arduino</title>
-    <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.js"></script>
-  </head>
-  <body>
-    <script type="text/javascript">
-	var socket = io.connect('http://localhost');
+var app = require("express")();
+var express = require("express");
 
-	socket.on('arduinoData', function(data){
-		// $('#date').text(data.arduinoData);
-		console.log(data);
-		var obj = JSON.parse(data.param1);
-		$('#date').append('<p><b>' + obj + '</b></p>');
-		//$('#date').text(data.param1);
+app.use(express.static(__dirname + '/public'));
+
+var http = require("http").Server(app);
+var io = require("socket.io")(http);
+
+app.get("/", function(req, res){
+	res.sendfile("index.html");
+});
+
+var mySocket;
+
+var serialport = require("serialport");
+var SerialPort = serialport.SerialPort;
+
+var mySerial = new SerialPort("/dev/ttyACM0", {
+  baudrate: 9600,
+  parser: serialport.parsers.readline("\n")
+});
+
+mySerial.on("open", function () {
+  //console.log("Porta Aberta.");
+});
+
+mySerial.on("data", function(data){
+	io.emit("arduinoData", {
+		param1: data,
+		param2: data,
+		param3: data,
+		param4: data,
+		param5: data
 	});
+});
 
-/*
-	$("#text").click(function(){
-		$('#text').keypress(function(e){
-			socket.emit('client_data', {'letter': "yoo9"});
-		});
-	});
-*/
 
-  </script>
-  <div id="date"></div>
- <!-- <textarea id="text"></textarea>-->
-  </body>
-</html>
+io.on('client_data', function(data){
+    console.log(data.letter);
+});
+
+io.on("connection", function(socket){
+	console.log("connection");
+});
+
+io.on('disconnect', function () {
+	console.log('user disconnected');
+});
+
+http.listen(80, function(){
+	//console.log("O sorvidor esta")
+});
