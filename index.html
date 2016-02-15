@@ -13,21 +13,29 @@
 	socket.on('arduinoData', function(data){
 		// $('#date').text(data.arduinoData);
 		console.log(data);
-		var obj = JSON.parse(data.param1);
-		$('#date').append('<p><b>' + obj + '</b></p>');
+		var a = JSON.parse(data);
+		//$('#date').append('<p>' + a.row1 + ', ' + a.row2 + ', ' + a.row3 + '</p>');
+		$('#row1').css('height', a.row1);
+		$('#row2').css('height', a.row2);
+		$('#row3').css('height', a.row3);		
 		//$('#date').text(data.param1);
 	});
 
-/*
-	$("#text").click(function(){
-		$('#text').keypress(function(e){
-			socket.emit('client_data', {'letter': "yoo9"});
-		});
-	});
-*/
-
   </script>
-  <div id="date"></div>
+	<div style="width: 122px;">
+		<div style="float: right ;width: 40px; height: 800px;">
+			<div id="row1" style="width: 40px; background: red">
+			</div>
+		</div>
+		<div style="float: right; width: 40px; height: 800px;">
+			<div id="row2" style="width: 40px; background: yellow">
+			</div>
+		</div>
+		<div style="float: right; width: 40px; height: 800px;">
+			<div id="row3" style="width: 40px; background: blue">
+			</div>
+		</div>
+	</div>
  <!-- <textarea id="text"></textarea>-->
   </body>
 </html>
