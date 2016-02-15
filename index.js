@@ -24,6 +24,7 @@ mySerial.on("open", function () {
   //console.log("Porta Aberta.");
 });
 
+
 mySerial.on('button', function(data){
     console.log(data);
     //serialPort.write(data);
